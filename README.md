@@ -94,7 +94,7 @@ netflow_ml_classifier_tcc/
 ### 4. Treinamento do Modelo (`treinando_modelo/`)
 * Etapa 4: Aprendizado de Máquina - Treinamento e Avaliação*
 
-**Código:** `decision_tree_final_optimized.py`
+**Código:** `decision_tree.py`
 
 **Funcionalidade:** Treina e avalia um modelo Árvore de Decisão otimizado para classificação de protocolos de rede.
 
@@ -172,7 +172,7 @@ python3 balanceado_dataset/create_balanced_dataset.py
 
 #### 4. Treinamento do Modelo
 ```bash
-python3 treinando_modelo/decision_tree_final_optimized.py
+python3 treinando_modelo/decision_tree.py
 ```
 
 ##  Fluxo de Trabalho Completo
