@@ -36,7 +36,7 @@ netflow_ml_classifier_tcc/
 ### 1. Classificador de Fluxos com DPI (`1-classificador_de_fluxos_com_DPI/`) 
 * Etapa 1: Criação dos Dados - Filtragem e Extração*
 
-**Script:** `DPI_flow_analyzer.py`
+**Código:** `DPI_flow_analyzer.py`
 
 **Funcionalidade:** Analisa arquivos de Deep Packet Inspection (DPI) para extrair informações de IPs e portas, e filtra fluxos de rede por aplicação específica.
 
@@ -55,7 +55,7 @@ netflow_ml_classifier_tcc/
 ### 2. Processamento de Dataset (`2-processando_dataset/`)
 * Etapa 2: Processamento dos Dados - Engenharia de Características*
 
-**Script:** `processing.py`
+**Código:** `processing.py`
 
 **Funcionalidade:** Processa conjuntos de dados de fluxos NetFlow calculando características derivadas.
 
@@ -73,7 +73,7 @@ netflow_ml_classifier_tcc/
 ### 3. Dataset Balanceado (`balanceado_dataset/`)
 * Etapa 3: Finalização dos Dados - Balanceamento e Categorização*
 
-**Script:** `create_balanced_dataset.py`
+**Código:** `create_balanced_dataset.py`
 
 **Funcionalidade:** Cria um conjunto de dados balanceado categorizando protocolos e aplicando técnicas de amostragem.
 
@@ -94,14 +94,14 @@ netflow_ml_classifier_tcc/
 ### 4. Treinamento do Modelo (`treinando_modelo/`)
 * Etapa 4: Aprendizado de Máquina - Treinamento e Avaliação*
 
-**Script:** `decision_tree_final_optimized.py`
+**Código:** `decision_tree_final_optimized.py`
 
 **Funcionalidade:** Treina e avalia um modelo Árvore de Decisão otimizado para classificação de protocolos de rede.
 
 **O que faz:**
 - Carrega conjunto de dados balanceado
 - Treina Árvore de Decisão com parâmetros otimizados
-- Avalia modelo com múltiplas métricas (acurácia, pontuação F1, precisão, revocação)
+- Avalia modelo com múltiplas métricas (acurácia, F1)
 - Salva modelo treinado em formato joblib
 - Gera relatório completo de classificação
 
@@ -113,7 +113,27 @@ netflow_ml_classifier_tcc/
 ### Pré-requisitos
 
 1. **Python**
-2. **Instalar dependências:**
+2. **Git LFS (Large File Storage)**
+
+Este repositório utiliza Git LFS para gerenciar os datasets, que são arquivos grandes. Para clonar e utilizar o projeto corretamente, é essencial ter o Git LFS instalado.
+
+Instale o Git LFS a partir do site oficial ou via gerenciador de pacotes (`brew install git-lfs`, `sudo apt-get install git-lfs`).
+
+Ative o Git LFS para o seu usuário (só precisa ser feito uma vez):
+
+```bash
+git lfs install
+```
+
+Clone o repositório normalmente:
+
+```bash
+git clone https://github.com/EduardoAlmeidaBR03/netflow_ml_classifier_tcc.git
+```
+
+O Git LFS fará o download automático dos datasets durante o clone.
+
+3. **Instalar dependências:**
 ```bash
 pip install -r requirements.txt
 ```
@@ -127,7 +147,7 @@ scikit-learn # Aprendizado de Máquina
 joblib       # Serialização de modelos
 ```
 
-### Execução dos Scripts
+### Execução dos Códigos
 
 #### 1. Análise DPI e Filtragem de Fluxos
 ```bash
@@ -167,5 +187,11 @@ python3 treinando_modelo/decision_tree_final_optimized.py
 ###  **Fase 4: Aprendizado de Máquina**
 6. **Treinamento** → Modelo Árvore de Decisão otimizado
 7. **Avaliação** → Métricas de desempenho e modelo final
+
+## Autor
+
+### Eduardo Rodrigues Almeida
+
+E-mail: eduardo.almeida09@hotmail.com
 
 
