@@ -13,11 +13,11 @@ from pathlib import Path
 class ProcessadorDPI:
     def __init__(self, applications):
         self.applications = applications if isinstance(applications, list) else [applications]
-        
-        self.dir_dpi_txt = Path('./dpi_txt')
-        self.dir_flows = Path('./flows')
-        self.dir_criterios = Path('./porta_ip')
-        self.dir_output = Path('./flows_filtrados')
+
+        self.dir_dpi_txt = Path('classificador_de_fluxos_com_DPI/dpi_txt')
+        self.dir_flows = Path('classificador_de_fluxos_com_DPI/flows')
+        self.dir_criterios = Path('classificador_de_fluxos_com_DPI/porta_ip')
+        self.dir_output = Path('classificador_de_fluxos_com_DPI/flows_filtrados')
 
         self.dir_criterios.mkdir(exist_ok=True)
         self.dir_output.mkdir(exist_ok=True)
