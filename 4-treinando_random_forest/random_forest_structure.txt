@@ -1,0 +1,52 @@
+================================================================================
+ESTRUTURA DO RANDOM FOREST
+================================================================================
+
+Configuração do Modelo:
+  - Critério: entropy
+  - Número de Estimadores: 100
+  - Max Features: sqrt
+  - Min Samples Split: 2
+  - Min Samples Leaf: 2
+  - Min Impurity Decrease: 1e-05
+  - Bootstrap: True
+  - OOB Score: True
+  - Random State: 42
+  - N Jobs: -1
+
+Estatísticas da Floresta:
+  - Número de Árvores: 100
+  - Número de Features: 21
+  - Número de Classes: 4
+  - Total de Nós (todas as árvores): 2,791,418
+  - Total de Folhas (todas as árvores): 1,395,759
+  - Profundidade Média das Árvores: 40.88
+  - Profundidade Mínima: 34
+  - Profundidade Máxima: 63
+  - Out-of-Bag Score: 0.9073 (90.73%)
+
+================================================================================
+IMPORTÂNCIA DAS FEATURES
+================================================================================
+
+Average.Packet.Size            : 0.074636 (7.46%)
+Fwd.bytes.packet               : 0.072327 (7.23%)
+Total.Length.of.Bwd.Packets    : 0.069261 (6.93%)
+Bwd.bytes.packet               : 0.066953 (6.70%)
+Total.Length.of.Fwd.Packets    : 0.066872 (6.69%)
+Fwd.Packet.Length.Mean         : 0.066444 (6.64%)
+Ratio.Bytes                    : 0.066078 (6.61%)
+Bwd.Packet.Length.Mean         : 0.062516 (6.25%)
+Fwd.Packets.s                  : 0.047476 (4.75%)
+Packets.s                      : 0.044646 (4.46%)
+Bwd.bytes.s                    : 0.042524 (4.25%)
+Fwd.Speed.packet               : 0.041303 (4.13%)
+Bwd.Speed.packet               : 0.039595 (3.96%)
+Total.Fwd.Packets              : 0.035594 (3.56%)
+Fwd.bytes.s                    : 0.035084 (3.51%)
+Bwd.Packets.s                  : 0.033528 (3.35%)
+Speed.packet                   : 0.032430 (3.24%)
+Total.Backward.Packets         : 0.032327 (3.23%)
+Flow.Bytes.s                   : 0.028713 (2.87%)
+Ratio.Packets                  : 0.027268 (2.73%)
+Protocol                       : 0.014424 (1.44%)

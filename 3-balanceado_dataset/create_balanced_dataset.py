@@ -10,9 +10,8 @@ def categorize_protocol(protocol_name):
                            "GOOGLEMEET", "SKYPECALL", "WHATSAPPCALL", "GOOGLECALL"]
     file_transfer_protocols = ["FTP_DATA", "HTTP_DOWNLOAD", "GOOGLECLOUD", "WHATSAPPFILE", 
                               "DOWNLOAD", "APPLEICLOUD", "GOOGLEDRIVE"]
-    social_protocols = ["TWITTER", "INSTAGRAM", "FACEBOOK"]
     general_protocols = ["HTTP", "GMAIL", "WIKIPEDIA", "DNS", "EBAY", "TEAMVIEWER", 
-                        "EASYTAXI", "MQTT", "SSH", "NTP", "ORACLE", "CITRIX", "MSSQL", "SNMP"]
+                        "EASYTAXI", "MQTT", "SSH", "NTP", "ORACLE", "CITRIX", "MSSQL", "SNMP", "TWITTER", "INSTAGRAM", "FACEBOOK"]
     
     if protocol_name in streaming_protocols:
         return "STREAMING"
@@ -20,14 +19,19 @@ def categorize_protocol(protocol_name):
         return "CONFERENCE"
     elif protocol_name in file_transfer_protocols:
         return "FILE_TRANSFER"
-    elif protocol_name in social_protocols:
-        return "SOCIAL"
     elif protocol_name in general_protocols:
         return "GENERAL"
     return "OTHER"
 
-def balance_classes_extreme(dataframe, target_samples=480000):
-    """Balanceia as classes usando oversampling e undersampling com ruído controlado"""
+def balance_classes_extreme(dataframe, target_samples=350000):
+    """
+    Balanceia as classes usando oversampling e undersampling com ruído controlado.
+    
+    Para amostras duplicadas, adiciona ruído proporcional usando:
+    - Coeficiente de Variação (CV = std/mean)
+    - Ruído multiplicativo ao invés de aditivo (evita valores negativos)
+    - Clipping para manter valores dentro do intervalo original
+    """
     print(f"Balanceando classes para {target_samples:,} amostras cada...")
     
     balanced_dataframes = []
@@ -51,10 +55,28 @@ def balance_classes_extreme(dataframe, target_samples=480000):
                                  if col not in ['Protocol', '_is_original']]
 
                 for col in numeric_columns:
+                    column_mean = class_data[col].mean()
                     column_std = class_data[col].std()
-                    if column_std > 0:
-                        noise = np.random.normal(0, column_std, duplicated_mask.sum())
-                        sampled_data.loc[duplicated_mask, col] += noise
+                    column_min = class_data[col].min()
+                    column_max = class_data[col].max()
+                    
+                    if column_std > 0 and column_mean != 0:
+                        # Calcula o coeficiente de variação
+                        cv = column_std / abs(column_mean)
+                        
+                        # Adiciona ruído proporcional ao valor de cada amostra
+                        # Isso evita valores negativos pois o ruído é relativo ao valor
+                        duplicated_values = sampled_data.loc[duplicated_mask, col].values
+                        
+                        # Ruído proporcional: cada valor recebe ruído baseado em si mesmo
+                        proportional_noise = np.random.normal(0, cv, len(duplicated_values))
+                        noisy_values = duplicated_values * (1 + proportional_noise)
+                        
+                        # Garante que os valores fiquem dentro do intervalo original
+                        # Isso evita outliers irreais e valores negativos
+                        noisy_values = np.clip(noisy_values, column_min, column_max)
+                        
+                        sampled_data.loc[duplicated_mask, col] = noisy_values
         
         sampled_data = sampled_data.drop('_is_original', axis=1)
         balanced_dataframes.append(sampled_data)
