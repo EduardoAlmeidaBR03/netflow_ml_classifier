@@ -1,6 +1,6 @@
-# Classificador ML de Fluxos de rede - TCC
+# Classificador ML de Fluxos de rede
 
-Este projeto implementa uma abordagem de classificação de fluxos de rede utilizando Machine Learning, desenvolvida como Trabalho de Conclusão de Curso (TCC). Inicialmente, realiza-se o mapeamento entre as aplicações identificadas via Deep Packet Inspection (DPI) e os fluxos NetFlow correspondentes, classificando os fluxos para compor o dataset. Em seguida, os dados são processados para gerar novas features relevantes, o conjunto é balanceado para reduzir vieses e, por fim, um modelo de Decision Tree é treinado para a classificação final do tráfego de rede.
+Este projeto implementa uma abordagem de classificação de fluxos de rede utilizando Machine Learning. Inicialmente, realiza-se o mapeamento entre as aplicações identificadas via Deep Packet Inspection (DPI) e os fluxos NetFlow correspondentes, classificando os fluxos para compor o dataset. Em seguida, os dados são processados para gerar novas features relevantes, o conjunto é balanceado para reduzir vieses e, por fim, um modelo de Decision Tree é treinado para a classificação final do tráfego de rede.
 
 ## Visão Geral do Projeto
 
